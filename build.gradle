@@ -93,7 +93,6 @@ sourceSets {
         }
     }
 }
-
 protobuf.protoc {
     artifact = 'com.google.protobuf:protoc:3.4.0'
 }
@@ -108,4 +107,15 @@ protobuf {
             }
         }
     }
+}
+
+task buildJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File ',
+                'Implementation-Version': version,
+                'Main-Class': mainClassName
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

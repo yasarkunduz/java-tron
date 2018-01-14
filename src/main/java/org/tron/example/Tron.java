@@ -22,7 +22,7 @@ import org.tron.peer.PeerType;
 
 public class Tron {
     @Parameter(names = {"--type", "-t"}, validateWith = PeerType.class)
-    private String type = "normal";
+    private String type = "server";
 
     private static Peer peer;
 
